@@ -228,6 +228,8 @@ defmodule ElixirSense.DocsTest do
 
       assert subject == "Application"
 
+      if Version.match?(System.version, "~>1.8") do
+        # code_change api changed in 1.8
       assert docs =~ """
              > config_change(changed, new, removed)
 
@@ -238,6 +240,7 @@ defmodule ElixirSense.DocsTest do
 
              Callback invoked after code upgrade\
              """
+      end
     end
 
     test "no docs" do

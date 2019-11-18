@@ -212,7 +212,7 @@ defmodule ElixirSense.SuggestionsTest do
                name: :reduce,
                origin: "Enumerable",
                spec: spec,
-               summary: "Reduces the `enumerable` into an element.",
+               summary: "Reduces" <> _,
                type: :protocol_function
              }
            ] = list

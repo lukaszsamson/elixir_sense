@@ -36,9 +36,9 @@ defmodule ElixirSense.Core.IntrospectionTest do
     else
       assert format_spec_ast(ast) == """
           code_change(old_vsn, state :: term, extra :: term) ::
-            {:ok, new_state :: term} |
-              {:error, reason :: term} |
-                {:down, term} when old_vsn: term
+             {:ok, new_state :: term} |
+             {:error, reason :: term} |
+             {:down, term} when old_vsn: term
            """
     end
   end
