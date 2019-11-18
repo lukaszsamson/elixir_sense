@@ -26,11 +26,21 @@ defmodule ElixirSense.Core.IntrospectionTest do
   test "format_spec_ast for callback" do
     ast = get_callback_ast(GenServer, :code_change, 3)
 
-    assert format_spec_ast(ast) == """
+    if Version.match?(System.version, "~>1.9") do
+
+      assert format_spec_ast(ast) == """
            code_change(old_vsn, state :: term, extra :: term) ::
              {:ok, new_state :: term} |
              {:error, reason :: term} when old_vsn: term | {:down, term}
            """
+    else
+      assert format_spec_ast(ast) == """
+          code_change(old_vsn, state :: term, extra :: term) ::
+            {:ok, new_state :: term} |
+              {:error, reason :: term} |
+                {:down, term} when old_vsn: term
+           """
+    end
   end
 
   test "get_callbacks_with_docs for erlang behaviours" do
